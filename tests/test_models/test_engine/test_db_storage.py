@@ -86,3 +86,29 @@ class TestFileStorage(unittest.TestCase):
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_save(self):
         """Test that save properly saves objects to file.json"""
+
+    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+    def test_get_normal(self):
+        """ Test that get retrieves one object """
+        first_state_id = list(models.storage.all(State).values())[0].id
+        self.assertIs(type(models.storage.get(State, first_state_id)), State)
+
+    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+    def test_get_with_wrong_id(self):
+        """ Test that get returns None when id not found """
+        ft_user = list(models.storage.all(User).values())[0].id
+        self.assertIs(models.storage.get(City, ft_user), None)
+
+    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+    def test_count_with_no_arg(self):
+        """ Test if the func returns the count of all objects in storage """
+        total = len(models.storage.all())
+        self.assertIs(type(models.storage.count()), int)
+        self.assertIs(models.storage.count(), total)
+
+    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+    def test_count_with_cls(self):
+        """ Test with a specific class """
+        total = len(models.storage.all(State))
+        self.assertIs(type(models.storage.count(State)), int)
+        self.assertIs(models.storage.count(State), total)
