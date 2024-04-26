@@ -19,4 +19,4 @@ def stats_count():
     my_classes = {"amenities": "Amenity", "cities": "City", "places": "Place",
                   "reviews": "Review", "states": "State", "users": "User"}
 
-    return {k: storage.count(v) for k, v in my_classes.items()}
+    return jsonify({k: storage.count(v) for k, v in my_classes.items()})

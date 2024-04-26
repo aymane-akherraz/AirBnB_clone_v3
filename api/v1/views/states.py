@@ -11,9 +11,9 @@ from models.state import State
 def get_states(state_id=None):
     """ Retrieves the list of all State objects """
 
-    if state_id:
+    if state_id is not None:
         state = storage.get(State, state_id)
-        if state:
+        if state is not None:
             return jsonify(state.to_dict())
         abort(404)
 
@@ -25,7 +25,7 @@ def remove_state(state_id):
     """ Deletes a State object """
 
     state = storage.get(State, state_id)
-    if state:
+    if state is not None:
         state.delete()
         storage.save()
         return jsonify({})
@@ -51,7 +51,7 @@ def update_state(state_id):
     """ Updates a State object """
 
     state = storage.get(State, state_id)
-    if state:
+    if state is not None:
         data = request.get_json()
         if data is not None:
             for k, v in data.items():

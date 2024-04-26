@@ -1,1 +1,0 @@
-# AirBnB clone - RESTful API
