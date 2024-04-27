@@ -6,6 +6,7 @@ from os import getenv
 import sqlalchemy
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
+from hashlib import md5
 
 
 class User(BaseModel, Base):
@@ -23,6 +24,11 @@ class User(BaseModel, Base):
         password = ""
         first_name = ""
         last_name = ""
+
+    def __setattr__(self, name, value):
+        """ Hashes the password """
+        if name == 'password':
+            super().__setattr__(name, md5(value.encode()).hexdigest())
 
     def __init__(self, *args, **kwargs):
         """initializes user"""
