@@ -56,7 +56,7 @@ def update_user(user_id):
     user = storage.get(User, user_id)
     if user:
         data = request.get_json()
-        if data is not None:
+        if data:
             for k, v in data.items():
                 if k not in ["id", "email", "created_at", "updated_at"]:
                     setattr(user, k, v)

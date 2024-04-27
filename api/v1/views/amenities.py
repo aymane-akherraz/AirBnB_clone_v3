@@ -38,7 +38,7 @@ def insert_new_amenity():
     """ Creates an Amenity object """
 
     amenity = request.get_json()
-    if amenity is not None:
+    if amenity:
         if 'name' not in amenity:
             abort(400, 'Missing name')
         new = Amenity(**amenity)
@@ -54,7 +54,7 @@ def update_amenity(amenity_id):
     amenity = storage.get(Amenity, amenity_id)
     if amenity:
         data = request.get_json()
-        if data is not None:
+        if data:
             for k, v in data.items():
                 if k not in ["id", "created_at", "updated_at"]:
                     setattr(amenity, k, v)

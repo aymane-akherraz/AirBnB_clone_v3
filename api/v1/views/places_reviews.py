@@ -46,7 +46,7 @@ def insert_new_review(place_id):
 
     if storage.get(Place, place_id):
         review = request.get_json()
-        if review is not None:
+        if review:
             if 'user_id' not in review:
                 abort(400, 'Missing user_id')
             if storage.get(User, review['user_id']) is None:
@@ -67,7 +67,7 @@ def update_review(review_id):
     review = storage.get(Review, review_id)
     if review:
         data = request.get_json()
-        if data is not None:
+        if data:
             for k, v in data.items():
                 if k not in ["id", "user_id", "place_id", "created_at",
                              "updated_at"]:

@@ -45,7 +45,7 @@ def insert_new_city(state_id):
 
     if storage.get(State, state_id):
         city = request.get_json()
-        if city is not None:
+        if city:
             if 'name' not in city:
                 abort(400, 'Missing name')
             new = City(**city, state_id=state_id)
@@ -62,7 +62,7 @@ def update_city(city_id):
     city = storage.get(City, city_id)
     if city:
         data = request.get_json()
-        if data is not None:
+        if data:
             for k, v in data.items():
                 if k not in ["id", "state_id", "created_at", "updated_at"]:
                     setattr(city, k, v)

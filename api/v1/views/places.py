@@ -46,7 +46,7 @@ def insert_new_place(city_id):
 
     if storage.get(City, city_id):
         place = request.get_json()
-        if place is not None:
+        if place:
             if 'user_id' not in place:
                 abort(400, 'Missing user_id')
             if storage.get(User, place['user_id']) is None:
@@ -67,7 +67,7 @@ def update_place(place_id):
     place = storage.get(Place, place_id)
     if place:
         data = request.get_json()
-        if data is not None:
+        if data:
             for k, v in data.items():
                 if k not in ["id", "user_id", "city_id", "created_at",
                              "updated_at"]:
