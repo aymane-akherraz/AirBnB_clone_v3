@@ -38,12 +38,12 @@ def insert_new_user():
     """ Creates an User object """
 
     user = request.get_json()
-    if user is not None:
+    if user:
         if 'email' not in user:
             abort(400, 'Missing email')
         if 'password' not in user:
             abort(400, 'Missing password')
-        new = user(**user)
+        new = User(**user)
         new.save()
         return jsonify(new.to_dict()), 201
     abort(400, 'Not a JSON')

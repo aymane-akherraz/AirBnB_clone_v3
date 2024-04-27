@@ -8,14 +8,12 @@ from models import storage
 @app_views.route('/status')
 def status():
     """ Return the status of the API """
-
     return jsonify({"status": "OK"})
 
 
 @app_views.route('/stats')
 def stats_count():
     """ Retrieves the number of each objects by type """
-
     my_classes = {"amenities": "Amenity", "cities": "City", "places": "Place",
                   "reviews": "Review", "states": "State", "users": "User"}
 

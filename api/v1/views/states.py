@@ -11,9 +11,9 @@ from models.state import State
 def get_states(state_id=None):
     """ Retrieves the list of all State objects """
 
-    if state_id is not None:
+    if state_id:
         state = storage.get(State, state_id)
-        if state is not None:
+        if state:
             return jsonify(state.to_dict())
         abort(404)
 
@@ -25,7 +25,7 @@ def remove_state(state_id):
     """ Deletes a State object """
 
     state = storage.get(State, state_id)
-    if state is not None:
+    if state:
         state.delete()
         storage.save()
         return jsonify({})
@@ -37,7 +37,7 @@ def insert_new_state():
     """ Creates a State """
 
     state = request.get_json()
-    if state is not None:
+    if state:
         if 'name' not in state:
             abort(400, 'Missing name')
         new = State(**state)
@@ -51,9 +51,9 @@ def update_state(state_id):
     """ Updates a State object """
 
     state = storage.get(State, state_id)
-    if state is not None:
+    if state:
         data = request.get_json()
-        if data is not None:
+        if data:
             for k, v in data.items():
                 if k not in ["id", "created_at", "updated_at"]:
                     setattr(state, k, v)

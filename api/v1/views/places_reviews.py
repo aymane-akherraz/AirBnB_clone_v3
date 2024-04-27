@@ -53,7 +53,7 @@ def insert_new_review(place_id):
                 abort(404)
             if 'text' not in review:
                 abort(400, 'Missing text')
-            new = review(**review, place_id=place_id)
+            new = Review(**review, place_id=place_id)
             new.save()
             return jsonify(new.to_dict()), 201
         abort(400, 'Not a JSON')

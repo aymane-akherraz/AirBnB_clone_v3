@@ -53,7 +53,7 @@ def insert_new_place(city_id):
                 abort(404)
             if 'name' not in place:
                 abort(400, 'Missing name')
-            new = City(**place, city_id=city_id)
+            new = Place(**place, city_id=city_id)
             new.save()
             return jsonify(new.to_dict()), 201
         abort(400, 'Not a JSON')
