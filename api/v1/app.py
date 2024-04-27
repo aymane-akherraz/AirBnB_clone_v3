@@ -1,5 +1,13 @@
 #!/usr/bin/python3
-""" Flask web app """
+"""
+Flask web app module
+
+This module sets up a Flask web server that handles API requests
+It registers the necessary routes and configurations
+to respond to HTTP requests.
+It also registers a blueprint
+"""
+
 from flask import Flask, jsonify
 from models import storage
 from api.v1.views import app_views
@@ -7,17 +15,16 @@ from os import getenv
 from flask_cors import CORS
 
 app = Flask(__name__)
-cors = CORS(app, resources={r"/*": {"origins": "0.0.0.0"}})
-
-
-app.url_map.strict_slashes = False
 app.register_blueprint(app_views)
+
+cors = CORS(app, resources={r"/*": {"origins": "0.0.0.0"}})
+app.url_map.strict_slashes = False
 
 
 @app.teardown_appcontext
 def teardown_db(exception):
     """closes the storage on teardown"""
-    storage.close() 
+    storage.close()
 
 
 @app.errorhandler(404)

@@ -1,5 +1,12 @@
 #!/usr/bin/python3
-""" users module """
+"""
+users api module
+
+This module defines the API routes for handling users in the Flask app.
+It includes route handlers for retrieving all users,
+retrieving a specific user by ID, creating a new user,
+updating an existing user, and deleting a user.
+"""
 from api.v1.views import app_views
 from flask import jsonify, abort, request
 from models import storage
@@ -35,7 +42,7 @@ def remove_user(user_id):
 
 @app_views.route('/users', methods=['POST'])
 def insert_new_user():
-    """ Creates an User object """
+    """ Creates a User object """
 
     user = request.get_json()
     if user:
@@ -51,7 +58,7 @@ def insert_new_user():
 
 @app_views.route('/users/<user_id>', methods=['PUT'])
 def update_user(user_id):
-    """ Updates an User object """
+    """ Updates a User object """
 
     user = storage.get(User, user_id)
     if user:

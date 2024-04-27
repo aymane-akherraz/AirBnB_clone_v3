@@ -1,10 +1,15 @@
 #!/usr/bin/python3
-""" reviews module """
+"""
+reviews api module
+
+This module defines the API routes for handling reviews in the Flask app.
+It includes route handlers for retrieving all reviews for a place,
+retrieving a specific review by ID, deleting a review, creating a new review,
+and updating an existing review.
+"""
 from api.v1.views import app_views
 from flask import jsonify, abort, request
 from models import storage
-from models.place import Place
-from models.user import User
 from models.review import Review
 
 
@@ -12,7 +17,7 @@ from models.review import Review
 def get_reviews_of_place(place_id):
     """ Retrieves the list of all Review objects of a place """
 
-    place = storage.get(Place, place_id)
+    place = storage.get("Place", place_id)
     if place:
         return jsonify([review.to_dict() for review in place.reviews])
     abort(404)
@@ -44,12 +49,12 @@ def remove_review(review_id):
 def insert_new_review(place_id):
     """ Creates a Review object """
 
-    if storage.get(Place, place_id):
+    if storage.get("Place", place_id):
         review = request.get_json()
         if review:
             if 'user_id' not in review:
                 abort(400, 'Missing user_id')
-            if storage.get(User, review['user_id']) is None:
+            if storage.get("User", review['user_id']) is None:
                 abort(404)
             if 'text' not in review:
                 abort(400, 'Missing text')

@@ -1,5 +1,11 @@
 #!/usr/bin/python3
-""" index module """
+"""
+index module
+
+This module defines two main routes:
+/status: Returnes the status of the API
+/stats: Retrieves the number of each objects by type
+"""
 from api.v1.views import app_views
 from flask import jsonify
 from models import storage

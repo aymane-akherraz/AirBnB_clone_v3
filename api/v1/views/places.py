@@ -1,18 +1,23 @@
 #!/usr/bin/python3
-""" Places module """
+"""
+Places api module
+This module defines the API routes for handling places in the Flask app.
+It includes route handlers for retrieving all places in a city,
+retrieving a specific place by ID, creating a new place,
+updating an existing place, and deleting a place.
+
+"""
 from api.v1.views import app_views
 from flask import jsonify, abort, request
 from models import storage
-from models.city import City
 from models.place import Place
-from models.user import User
 
 
 @app_views.route('/cities/<city_id>/places', methods=['GET'])
 def get_places_of_city(city_id):
     """ Retrieves the list of all Place objects of a city """
 
-    city = storage.get(City, city_id)
+    city = storage.get("City", city_id)
     if city:
         return jsonify([place.to_dict() for place in city.places])
     abort(404)
@@ -44,12 +49,12 @@ def remove_place(place_id):
 def insert_new_place(city_id):
     """ Creates a Place object """
 
-    if storage.get(City, city_id):
+    if storage.get("City", city_id):
         place = request.get_json()
         if place:
             if 'user_id' not in place:
                 abort(400, 'Missing user_id')
-            if storage.get(User, place['user_id']) is None:
+            if storage.get("User", place['user_id']) is None:
                 abort(404)
             if 'name' not in place:
                 abort(400, 'Missing name')
