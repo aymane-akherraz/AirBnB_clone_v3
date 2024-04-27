@@ -1,7 +1,13 @@
 #!/usr/bin/python3
-""" Place_amenities Module """
+"""
+Place_amenities Module
+
+This module defines the API routes for handling amenities in the Flask app.
+It includes route handlers for retrieving all amenities for a place,
+deleting an amenity from a place, and adding an amenity to a place.
+"""
 from api.v1.views import app_views
-from flask import jsonify, abort, request
+from flask import jsonify, abort
 from models import storage
 
 
