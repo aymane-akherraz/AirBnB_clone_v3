@@ -1,10 +1,7 @@
 #!/usr/bin/python3
 """
-users api module
 This module defines the API routes for handling users in the Flask app.
 It includes route handlers for retrieving all users,
-retrieving a specific user by ID, creating a new user,
-updating an existing user, and deleting a user.
 """
 from api.v1.views import app_views
 from flask import jsonify, abort, request

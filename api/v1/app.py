@@ -1,10 +1,7 @@
 #!/usr/bin/python3
 """
-Flask web app module
 This module sets up a Flask web server that handles API requests
 It registers the necessary routes and configurations
-to respond to HTTP requests.
-It also registers a blueprint
 """
 
 from flask import Flask, jsonify

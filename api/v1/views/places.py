@@ -1,11 +1,7 @@
 #!/usr/bin/python3
 """
-Places api module
 This module defines the API routes for handling places in the Flask app.
 It includes route handlers for retrieving all places in a city,
-retrieving a specific place by ID, creating a new place,
-updating an existing place, and deleting a place.
-
 """
 from api.v1.views import app_views
 from flask import jsonify, abort, request
