@@ -1,7 +1,10 @@
 #!/usr/bin/python3
 """
-This module sets up a Flask web server that handles API requests
+This module sets up a Flask web server that handles API requests.
 It registers the necessary routes and configurations
+to respond to HTTP requests.
+The server listens on the specified host and port,
+which can be customized through environment variables.
 """
 
 from flask import Flask, jsonify
@@ -14,7 +17,6 @@ app = Flask(__name__)
 app.register_blueprint(app_views)
 
 cors = CORS(app, resources={r"/*": {"origins": "0.0.0.0"}})
-app.url_map.strict_slashes = False
 
 
 @app.teardown_appcontext

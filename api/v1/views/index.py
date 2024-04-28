@@ -1,11 +1,15 @@
 #!/usr/bin/python3
 """
-index module
+This module contains route handlers for the Flask app.
+It defines the various routes and their corresponding functions
+to handle incoming HTTP requests.
+Each route is responsible for a specific endpoint or functionality of the app.
 
-This module defines two main routes:
-/status: Returnes the status of the API
-/stats: Retrieves the number of each objects by type
+Routes:
+- GET /status: Returns the status of the API.
+- GET /stats: Retrieves the number of each object by type
 """
+
 from api.v1.views import app_views
 from flask import jsonify
 from models import storage
