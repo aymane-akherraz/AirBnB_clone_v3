@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-"""
-This module defines the API routes for handling cities in the Flask app.
+""" City module: This module defines the API routes
+for handling cities in the Flask app.
 It includes route handlers for retrieving all cities of a state,
 retrieving a specific city by ID, creating a new city,
 updating an existing city, and deleting a city.

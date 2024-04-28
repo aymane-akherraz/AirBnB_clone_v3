@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-"""
-This module defines the API routes for handling places in the Flask app.
+""" Place module: This module defines the API routes
+for handling places in the Flask app.
 It includes route handlers for retrieving all places in a city,
 retrieving a specific place by ID, creating a new place,
 updating an existing place, and deleting a place.

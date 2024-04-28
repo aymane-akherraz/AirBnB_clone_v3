@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-"""
-This module sets up a Flask web server that handles API requests.
+""" Flask web app: This module sets up a Flask web server
+that handles API requests.
 It registers the necessary routes and configurations
 to respond to HTTP requests.
 The server listens on the specified host and port,

@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-"""
-This module defines the API routes for handling amenities in the Flask app.
+""" Amenity module: This module defines the API routes
+for handling amenities in the Flask app.
 It includes route handlers for retrieving all amenities,
 retrieving a specific amenity by ID, creating a new amenity,
 updating an existing amenity, and deleting an amenity.

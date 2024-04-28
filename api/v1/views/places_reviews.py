@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-"""
-This module defines the API routes for handling reviews in the Flask app.
+""" Place_reviews module: This module defines the API routes
+for handling reviews in the Flask app.
 It includes route handlers for retrieving all reviews for a place,
 retrieving a specific review by ID, deleting a review, creating a new review,
 and updating an existing review.

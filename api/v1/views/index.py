@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-"""
-This module contains route handlers for the Flask app.
+""" Index module: This module contains route handlers for the Flask app.
 It defines the various routes and their corresponding functions
 to handle incoming HTTP requests.
 Each route is responsible for a specific endpoint or functionality of the app.

@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-"""
-This module defines the API routes for handling states in the Flask app.
+""" State module:  This module defines the API routes
+for handling states in the Flask app.
 It includes route handlers for retrieving all states,
 retrieving a specific state by ID, creating a new state,
 updating an existing state, and deleting a state.
