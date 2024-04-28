@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """
 users api module
-
 This module defines the API routes for handling users in the Flask app.
 It includes route handlers for retrieving all users,
 retrieving a specific user by ID, creating a new user,
