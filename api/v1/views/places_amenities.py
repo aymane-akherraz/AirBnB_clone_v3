@@ -14,6 +14,7 @@ Routes:
 from api.v1.views import app_views
 from flask import jsonify, abort
 from models import storage
+from os import getenv
 
 
 @app_views.route('/places/<place_id>/amenities', methods=['GET'],
@@ -38,7 +39,10 @@ def delete_amenity(place_id, amenity_id):
         abort(404)
     if amenity not in place.amenities:
         abort(404)
-    amenity.delete()
+    if getenv("HBNB_TYPE_STORAGE") == "db":
+        place.amenities.remove(amenity)
+    else:
+        place.amenity_ids.remove(amenity)
     storage.save()
     return jsonify({})
 
@@ -53,7 +57,11 @@ def link_Amenity(place_id, amenity_id):
     amenity = storage.get("Amenity", amenity_id)
     if amenity is None:
         abort(404)
-
     if amenity in place.amenities:
         return jsonify(amenity.to_dict())
+    if getenv("HBNB_TYPE_STORAGE") == "db":
+        place.amenities.append(amenity)
+    else:
+        place.amenity_ids.append(amenity)
+    storage.save()
     return jsonify(amenity.to_dict()), 201
