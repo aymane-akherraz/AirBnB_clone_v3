@@ -66,7 +66,8 @@ def insert_new_place(city_id):
             abort(404)
         if 'name' not in place:
             abort(400, 'Missing name')
-        my_dict = {**place, 'city_id': city_id}
+        my_dict = place.copy()
+        my_dict['city_id'] = city_id
         new = Place(**my_dict)
         new.save()
         return jsonify(new.to_dict()), 201

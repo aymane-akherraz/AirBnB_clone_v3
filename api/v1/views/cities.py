@@ -59,7 +59,8 @@ def insert_new_city(state_id):
             abort(400, 'Not a JSON')
         if 'name' not in city:
             abort(400, 'Missing name')
-        my_dict = {**city, 'state_id': state_id}
+        my_dict = city.copy()
+        my_dict['state_id'] = state_id
         new = City(**my_dict)
         new.save()
         return jsonify(new.to_dict()), 201

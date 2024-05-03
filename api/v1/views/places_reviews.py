@@ -64,7 +64,8 @@ def insert_new_review(place_id):
             abort(404)
         if 'text' not in review:
             abort(400, 'Missing text')
-        my_dict = {**review, 'place_id': place_id}
+        my_dict = review.copy()
+        my_dict['place_id'] = place_id
         new = Review(**my_dict)
         new.save()
         return jsonify(new.to_dict()), 201
