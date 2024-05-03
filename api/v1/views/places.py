@@ -75,8 +75,7 @@ def search():
                 city = storage.get("City", city_id)
                 if city and (city.state_id not in data.get('states', [])):
                     for place in city.places:
-                        if place not in places_list:
-                            places_list.append(place)
+                        places_list.append(place)
             filtred_places = places_list
         elif k == 'amenities':
             if places_list == []:
