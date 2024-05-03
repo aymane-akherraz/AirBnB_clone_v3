@@ -67,14 +67,16 @@ def search():
                 if state:
                     for city in state.cities:
                         for place in city.places:
-                            places_list.append(place)
+                            if place not in places_list:
+                                places_list.append(place)
             filtred_places = places_list
         elif k == 'cities':
             for city_id in v:
                 city = storage.get("City", city_id)
                 if city and (city.state_id not in data.get('states', [])):
                     for place in city.places:
-                        places_list.append(place)
+                        if place not in places_list:
+                            places_list.append(place)
             filtred_places = places_list
         elif k == 'amenities':
             if places_list == []:
@@ -93,7 +95,6 @@ def search():
                         if amenity and amenity not in place.amenities:
                             filtred_places.remove(place)
                             break
-
     return jsonify([place.to_dict() for place in filtred_places])
 
 
