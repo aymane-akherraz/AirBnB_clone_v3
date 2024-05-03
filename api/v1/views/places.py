@@ -82,7 +82,7 @@ def search():
                 for place in all_places:
                     for amenity_id in v:
                         amenity = storage.get("Amenity", amenity_id)
-                        if amenity not in place.amenities:
+                        if amenity and amenity not in place.amenities:
                             filtred_places.remove(place)
                             break
             else:
@@ -90,9 +90,10 @@ def search():
                 for place in places_list:
                     for amenity_id in v:
                         amenity = storage.get("Amenity", amenity_id)
-                        if amenity not in place.amenities:
+                        if amenity and amenity not in place.amenities:
                             filtred_places.remove(place)
                             break
+
     return jsonify([place.to_dict() for place in filtred_places])
 
 
