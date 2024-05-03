@@ -3,12 +3,6 @@
 for handling amenities in the Flask app.
 It includes route handlers for retrieving all amenities for a place,
 deleting an amenity from a place, and adding an amenity to a place.
-
-Routes:
-- GET /places/<place_id>/amenities: Retrieve all amenities for a place.
-- DELETE /places/<place_id>/amenities/<amenity_id>: Delete an amenity
-  from a place.
-- POST /places/<place_id>/amenities/<amenity_id>: Add an amenity to a place.
 """
 
 from api.v1.views import app_views

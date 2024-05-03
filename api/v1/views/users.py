@@ -4,13 +4,6 @@ for handling users in the Flask app.
 It includes route handlers for retrieving all users,
 retrieving a specific user by ID, creating a new user,
 updating an existing user, and deleting a user.
-
-Routes:
-- GET /users: Retrieve all users.
-- GET /users/<user_id>: Retrieve a specific user by ID.
-- DELETE /users/<user_id>: Delete a user.
-- POST /users/: Create a new user.
-- PUT /users/<user_id>: Update an existing user.
 """
 
 from api.v1.views import app_views

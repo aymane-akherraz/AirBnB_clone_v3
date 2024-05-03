@@ -4,13 +4,6 @@ for handling states in the Flask app.
 It includes route handlers for retrieving all states,
 retrieving a specific state by ID, creating a new state,
 updating an existing state, and deleting a state.
-
-Routes:
-- GET /states: Retrieve all states.
-- GET /states/<state_id>: Retrieve a specific state by ID.
-- DELETE /states/<state_id>: Delete a state.
-- POST /states/: Create a new state.
-- PUT /states/<state_id>: Update an existing state.
 """
 
 from api.v1.views import app_views

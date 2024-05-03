@@ -4,15 +4,6 @@ for handling places in the Flask app.
 It includes route handlers for retrieving all places in a city,
 retrieving a specific place by ID, creating a new place,
 updating an existing place, and deleting a place.
-
-Routes:
-- GET /cities/<city_id>/places: Retrieve all places in a city.
-- GET /places/<place_id>: Retrieve a specific place by ID.
-- DELETE /places/<place_id>: Delete a place.
-- POST /cities/<city_id>/places: Create a new place in a city.
-- POST /places_search: Search for places based on
-                       states, cities, and amenities.
-- PUT /places/<place_id>: Update an existing place.
 """
 
 from api.v1.views import app_views
@@ -50,6 +41,55 @@ def remove_place(place_id):
         storage.save()
         return jsonify({})
     abort(404)
+
+
+@app_views.route('/places_search', methods=['POST'],
+                 strict_slashes=False)
+def search():
+    """ Retrieves all Place objects depending of the
+        JSON in the body of the request
+    """
+    data = request.get_json(silent=True)
+    if data is None:
+        abort(400, 'Not a JSON')
+    all_places = [place.to_dict() for place in storage.all(Place)]
+    if not data or all(data.get(key, []) == [] for key
+                       in ['states', 'cities', 'amenities']):
+        return jsonify(all_places)
+
+    places_list = []
+    for k, v in data.items():
+        if k == "states":
+            for state_id in v:
+                state = storage.get("State", state_id)
+                if state:
+                    for city in state.cities:
+                        for place in city.places:
+                            places_list.append(place)
+        elif k == 'cities':
+            for city_id in v:
+                city = storage.get("City", city_id)
+                if city and (city.state_id not in data.get('states', [])):
+                    for place in city.places:
+                        places_list.append(place)
+        elif k == 'amenities':
+            if places_list == []:
+                filtred_places = all_places
+                for place in all_places:
+                    for amenity_id in v:
+                        amenity = storage.get("Amenity", amenity_id)
+                        if amenity not in place.amenities:
+                            filtred_places.remove(place)
+                            break
+            else:
+                filtred_places = places_list
+                for place in places_list:
+                    for amenity_id in v:
+                        amenity = storage.get("Amenity", amenity_id)
+                        if amenity not in place.amenities:
+                            filtred_places.remove(place)
+                            break
+    return jsonify([place.to_dict() for place in filtred_places])
 
 
 @app_views.route('/cities/<city_id>/places', methods=['POST'],

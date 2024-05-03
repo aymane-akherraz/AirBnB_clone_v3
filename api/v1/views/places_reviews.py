@@ -4,13 +4,6 @@ for handling reviews in the Flask app.
 It includes route handlers for retrieving all reviews for a place,
 retrieving a specific review by ID, deleting a review, creating a new review,
 and updating an existing review.
-
-Routes:
-- GET /places/<place_id>/reviews: Retrieve all reviews for a place.
-- GET /reviews/<review_id>: Retrieve a specific review by ID.
-- DELETE /reviews/<review_id>: Delete a review.
-- POST /places/<place_id>/reviews: Create a new review for a place.
-- PUT /reviews/<review_id>: Update an existing review.
 """
 
 from api.v1.views import app_views

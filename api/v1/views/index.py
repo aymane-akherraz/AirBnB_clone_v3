@@ -3,10 +3,6 @@
 It defines the various routes and their corresponding functions
 to handle incoming HTTP requests.
 Each route is responsible for a specific endpoint or functionality of the app.
-
-Routes:
-- GET /status: Returns the status of the API.
-- GET /stats: Retrieves the number of each object by type
 """
 
 from api.v1.views import app_views

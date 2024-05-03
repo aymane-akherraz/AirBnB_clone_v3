@@ -4,13 +4,6 @@ for handling cities in the Flask app.
 It includes route handlers for retrieving all cities of a state,
 retrieving a specific city by ID, creating a new city,
 updating an existing city, and deleting a city.
-
-Routes:
-- GET /states/<state_id>/cities: Retrieve all cities for a specific state.
-- GET /cities/<city_id>: Retrieve a specific city by ID.
-- DELETE /cities/<city_id>: Delete a city.
-- POST /states/<state_id>/cities: Create a new city for a specific state.
-- PUT /cities/<city_id>: Update an existing city.
 """
 
 from api.v1.views import app_views
