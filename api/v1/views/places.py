@@ -67,8 +67,7 @@ def search():
                 if state:
                     for city in state.cities:
                         for place in city.places:
-                            if place not in places_list:
-                                places_list.append(place)
+                            places_list.append(place)
             filtred_places = places_list
         elif k == 'cities':
             for city_id in v:
