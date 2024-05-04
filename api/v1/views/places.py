@@ -88,12 +88,7 @@ def search():
                     places_list.remove(place)
                     break
 
-    places_list = [place.to_dict() for place in places_list]
-    for k, v in places_list.items():
-        if k == 'amenities':
-            del places_list[k]
-
-    return jsonify(places_list)
+    return jsonify([place.to_dict() for place in places_list])
 
 
 @app_views.route('/cities/<city_id>/places', methods=['POST'],
