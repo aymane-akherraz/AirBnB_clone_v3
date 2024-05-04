@@ -53,13 +53,9 @@ def search():
     if data is None:
         abort(400, 'Not a JSON')
 
-    all_places = [place.to_dict() for place in storage.all(Place).values()]
-    if not data or all(data.get(key, []) == [] for key
-                       in ['states', 'cities', 'amenities']):
-        return jsonify(all_places)
-
+    all_places = [place for place in storage.all(Place).values()]
     places_list = []
-    filtred_places = places_list
+    filtred_places = all_places
     for k, v in data.items():
         if k == "states":
             for state_id in v:
@@ -67,7 +63,8 @@ def search():
                 if state:
                     for city in state.cities:
                         for place in city.places:
-                            places_list.append(place)
+                            if place not in places_list:
+                                places_list.append(place)
             filtred_places = places_list
         elif k == 'cities':
             for city_id in v:
@@ -93,6 +90,7 @@ def search():
                         if amenity and amenity not in place.amenities:
                             filtred_places.remove(place)
                             break
+
     return jsonify([place.to_dict() for place in filtred_places])
 
 
